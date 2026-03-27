@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Intro to AI Agents — Hackerschool Week 8</title>
+    <title>Tinyfish API — Hackathon Quick Start</title>
 
     <!-- Fonts: Inter for headlines, IBM Plex Mono for body/labels -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -584,492 +584,261 @@
          SLIDE 1: TITLE
          =========================================== -->
     <section class="slide title-slide" aria-label="Title">
-        <span class="slide-num">01 / 14</span>
-        <div class="pill reveal" style="margin-bottom: var(--content-gap);">HACKERSCHOOL WEEK 8</div>
-        <h1 class="reveal">Intro to<br>AI Agents.</h1>
-        <p class="subtitle reveal">What it takes to build AI systems that work.</p>
-        <p class="meta reveal">Pranav Janakiraman &mdash; Hackerschool Week 8</p>
+        <span class="slide-num">01 / 09</span>
+        <div class="pill reveal" style="margin-bottom: var(--content-gap);">HACKATHON WORKSHOP</div>
+        <h1 class="reveal">TinyFish<br>Web Agent.</h1>
+        <p class="subtitle reveal">Automate any website with natural language. Get set up in 5 minutes.</p>
+        <p class="meta reveal">Pranav Janakiraman &mdash; TinyFish</p>
         <div class="ticker">
             <span class="ticker-inner">
-                OBSERVE &#9670; DECIDE &#9670; ACT &#9670; REPEAT &#9670; PERCEPTION &#9670; DECISION &#9670; ACTION &#9670; TOOLS &#9670; MEMORY &#9670; GUARDRAILS &#9670;
-                OBSERVE &#9670; DECIDE &#9670; ACT &#9670; REPEAT &#9670; PERCEPTION &#9670; DECISION &#9670; ACTION &#9670; TOOLS &#9670; MEMORY &#9670; GUARDRAILS &#9670;
+                SCRAPE &#9670; AUTOMATE &#9670; EXTRACT &#9670; NAVIGATE &#9670; FILL FORMS &#9670; CLICK BUTTONS &#9670; READ PAGES &#9670; RETURN JSON &#9670;
+                SCRAPE &#9670; AUTOMATE &#9670; EXTRACT &#9670; NAVIGATE &#9670; FILL FORMS &#9670; CLICK BUTTONS &#9670; READ PAGES &#9670; RETURN JSON &#9670;
             </span>
         </div>
     </section>
 
     <!-- ===========================================
-         SLIDE 2: ABOUT ME
+         SLIDE 2: WHAT IS TINYFISH WEB AGENT
          =========================================== -->
-    <section class="slide content-slide" aria-label="About Me">
-        <span class="slide-num">02 / 14</span>
-        <div class="slide-content" style="flex-direction: row; align-items: center; gap: clamp(2rem, 5vw, 5rem);">
-            <div style="flex: 1;">
-                <div class="label reveal">ABOUT ME</div>
-                <h2 class="reveal">Hi, I'm Pranav. &#128075;</h2>
-                <div class="divider reveal"></div>
-                <ul class="bullet-list reveal" style="margin-top: var(--content-gap);">
-                    <li><strong>Product @ TinyFish</strong></li>
-                    <li>Won NUS Orbital &mdash; built an agent system that schedules tasks for you</li>
-                    <li>Currently building <strong>Ideas</strong> &mdash; your AI second brain for all your ideas and tasks</li>
-                </ul>
-                <img src="ideas-banner.png" alt="Ideas app" class="reveal" style="margin-top: var(--content-gap); width: 100%; max-width: 500px; height: auto; border-radius: 4px; display: block; margin-left: auto; margin-right: auto;">
-            </div>
-            <div class="reveal" style="flex-shrink: 0;">
-                <img src="pranav.png" alt="Pranav Janakiraman" style="width: clamp(150px, 20vw, 280px); height: clamp(150px, 20vw, 280px); object-fit: cover; object-position: center 20%; border-radius: 4px; border: 2px solid var(--ink);">
-            </div>
-        </div>
-    </section>
-
-    <!-- ===========================================
-         SLIDE 3: WHAT IS AN AGENT?
-         =========================================== -->
-    <section class="slide content-slide" aria-label="What is an Agent">
-        <span class="slide-num">03 / 14</span>
+    <section class="slide content-slide" aria-label="What is TinyFish Web Agent">
+        <span class="slide-num">02 / 09</span>
         <div class="slide-content">
-            <div class="label reveal">THE BASICS</div>
-            <h2 class="reveal">What is<br>an Agent?</h2>
-            <p class="body-text reveal" style="margin-top: var(--content-gap);">A system that takes actions on your behalf based on <strong>goals</strong>, not instructions &mdash; often with a level of reasoning involved.</p>
-            <div class="comparison reveal" style="margin-top: var(--content-gap);">
-                <div class="comparison-col">
-                    <div class="label">SCRIPT</div>
-                    <div class="divider"></div>
-                    <p class="body-text">"Send an email to john@example.com."</p>
-                    <p class="body-text" style="opacity: 0.5;">One input, one output. Done.</p>
-                </div>
-                <div class="comparison-col">
-                    <div class="label" style="color: var(--accent);">AGENT</div>
-                    <div class="divider"></div>
-                    <p class="body-text">"Get me to Tokyo next week as cheap as possible."</p>
-                    <p class="body-text" style="opacity: 0.5;">Searches multiple airlines. Compares prices and layovers. Checks your calendar for conflicts. Books the best option. Adds it to your itinerary.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- ===========================================
-         SLIDE 3: THE AGENT LOOP
-         =========================================== -->
-    <section class="slide content-slide" aria-label="The Agent Loop">
-        <span class="slide-num">04 / 14</span>
-        <div class="slide-content">
-            <div class="label reveal">THE CORE PATTERN</div>
-            <h2 class="reveal">The Agent<br>Loop.</h2>
-            <div class="flow">
-                <div class="flow-step">Observe</div>
-                <span class="flow-arrow">&rarr;</span>
-                <div class="flow-step">Decide</div>
-                <span class="flow-arrow">&rarr;</span>
-                <div class="flow-step">Act</div>
-                <span class="flow-arrow">&rarr;</span>
-                <div class="flow-step">Observe Result</div>
-                <span class="flow-arrow">&rarr;</span>
-                <div class="flow-step" style="border-color: var(--accent); color: var(--accent);">Repeat</div>
-            </div>
-            <div class="loop-back reveal" style="margin-top: 0;">
-                <svg width="100%" height="70" viewBox="0 0 900 70" preserveAspectRatio="xMidYMid meet" style="max-width: 900px; display: block; overflow: visible;">
-                    <path d="M 50 15 L 50 50 Q 50 60 60 60 L 860 60 Q 870 60 870 50 L 870 5" fill="none" stroke="#E8611A" stroke-width="2.5"/>
-                    <!-- Arrowhead pointing up at Observe -->
-                    <polygon points="43,18 50,3 57,18" fill="#E8611A"/>
-                </svg>
-            </div>
-            <p class="body-text reveal" style="margin-top: var(--content-gap);">This loop keeps going until the goal is determined to be met by the agent.</p>
-        </div>
-    </section>
-
-    <!-- ===========================================
-         SLIDE 4: THREE COMPONENTS
-         =========================================== -->
-    <section class="slide content-slide" aria-label="Three Components">
-        <span class="slide-num">05 / 14</span>
-        <div class="slide-content">
-            <div class="label reveal">BUILDING BLOCKS</div>
-            <h2 class="reveal">What Every<br>Agent Needs.</h2>
-            <div class="three-up">
-                <div class="card reveal">
-                    <div class="card-title">Perception.</div>
-                    <div class="card-text">APIs, databases, documents &mdash; how the agent sees the world. Only as good as what it can observe.</div>
-                    <div class="card-text" style="color: var(--accent); margin-top: 0.5em; font-weight: 500;">Claude Code's search tool reading your codebase</div>
-                </div>
-                <div class="card reveal">
-                    <div class="card-title">Decision Logic.</div>
-                    <div class="card-text">Structured rules for routine cases. Invoke the LLM only for ambiguous situations.</div>
-                    <div class="card-text" style="color: var(--accent); margin-top: 0.5em; font-weight: 500;">Claude deciding whether to edit a file or ask you first</div>
-                </div>
-                <div class="card reveal">
-                    <div class="card-title">Action Interface.</div>
-                    <div class="card-text">How the agent affects the world. Every action: <strong>logged, reversible, permissioned</strong>.</div>
-                    <div class="card-text" style="color: var(--accent); margin-top: 0.5em; font-weight: 500;">Claude Code writing code, running tests, creating commits</div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- ===========================================
-         SLIDE 5: TOOLS
-         =========================================== -->
-    <section class="slide content-slide" aria-label="Tools">
-        <span class="slide-num">06 / 14</span>
-        <div class="slide-content">
-            <div class="label reveal">ACTION LAYER</div>
-            <h2 class="reveal">Tools.</h2>
-            <ul class="bullet-list reveal" style="margin-top: var(--content-gap);">
-                <li>Tools = <strong>functions</strong> the agent can call</li>
-                <li>Each tool does <strong>one thing</strong>: send email, query DB, create event</li>
-                <li>The model <strong>doesn't execute</strong> tools &mdash; it <strong>requests</strong> them</li>
-            </ul>
-            <div class="code-block reveal" style="margin-top: var(--content-gap);">
-                <span class="accent">const</span> result = <span class="accent">await</span> generateText({<br>
-                &nbsp;&nbsp;model: openai(<span class="accent">'gpt-4o'</span>),&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="dim">// which LLM to use</span><br>
-                &nbsp;&nbsp;tools: { weather: tool({<br>
-                &nbsp;&nbsp;&nbsp;&nbsp;description: <span class="accent">'Get weather in a city'</span>,&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="dim">// tells the model what this tool does</span><br>
-                &nbsp;&nbsp;&nbsp;&nbsp;parameters: z.object({ city: z.string() }),<span class="dim"> // what inputs the tool accepts</span><br>
-                &nbsp;&nbsp;&nbsp;&nbsp;execute: <span class="accent">async</span> ({ city }) =&gt; getWeather(city),<span class="dim"> // function you define for the agent to run</span><br>
-                &nbsp;&nbsp;}) },<br>
-                });
-            </div>
-            <p class="body-text reveal" style="margin-top: var(--element-gap); color: var(--accent);">Tool definition in the Vercel AI SDK &mdash; we'll use this later!</p>
-        </div>
-    </section>
-
-    <!-- ===========================================
-         SLIDE 6: HOW TOOL CALLING WORKS
-         =========================================== -->
-    <section class="slide content-slide" aria-label="Tool Calling">
-        <span class="slide-num">07 / 14</span>
-        <div class="slide-content">
-            <div class="label reveal">THE FLOW</div>
-            <h2 class="reveal">How Tool Calling<br>Works.</h2>
-            <div class="flow" style="margin-top: var(--content-gap); align-items: stretch;">
-                <div class="flow-step" style="text-align: left; line-height: 1.4;">
-                    <span style="font-size: 1.5em;">&#129302;</span><br>
-                    <span style="font-size: 0.7em; font-weight: 400;">"What's the weather<br>in Singapore?"</span>
-                </div>
-                <span class="flow-arrow">&rarr;</span>
-                <div class="flow-step" style="text-align: left; line-height: 1.4;">
-                    <span style="font-size: 0.7em;">CALLS TOOL</span><br>
-                    <span style="font-size: 0.7em; font-weight: 400; font-family: var(--font-mono);">getWeather(<span style="color: var(--accent);">"SG"</span>)</span>
-                </div>
-                <span class="flow-arrow">&rarr;</span>
-                <div class="flow-step" style="text-align: left; line-height: 1.4; border-color: var(--accent);">
-                    <span style="font-size: 0.7em; color: var(--accent);">GETS DATA BACK</span><br>
-                    <span style="font-size: 0.6em; font-weight: 400; opacity: 0.6;">the agent reads this info</span><br>
-                    <span style="font-size: 0.7em; font-weight: 400; font-family: var(--font-mono);">{ temp: 31, humid: 82% }</span>
-                </div>
-                <span class="flow-arrow">&rarr;</span>
-                <div class="flow-step" style="text-align: left; line-height: 1.4;">
-                    <span style="font-size: 1.5em;">&#129302;</span><br>
-                    <span style="font-size: 0.7em; font-weight: 400;">"It's 31&deg;C and<br>humid in Singapore!"</span>
-                </div>
-            </div>
-            <div class="hairline reveal" style="margin-top: var(--content-gap);"></div>
-            <ul class="bullet-list reveal" style="margin-top: var(--element-gap);">
-                <li>Orchestration layer <span style="color: var(--accent);">(Vercel AI SDK, Claude Code, LangChain, etc.)</span> checks <strong>permissions</strong> &amp; validates <strong>parameters</strong></li>
-                <li>Executes the function, captures the result</li>
-                <li>Feeds structured data back &mdash; agent reasons about what to do next</li>
-                <li>The agent knows <strong>what</strong> the tool does, not <strong>how</strong></li>
-            </ul>
-        </div>
-    </section>
-
-    <!-- ===========================================
-         SLIDE 7: SYSTEM PROMPTS
-         =========================================== -->
-    <section class="slide content-slide" aria-label="System Prompts">
-        <span class="slide-num">08 / 14</span>
-        <div class="slide-content">
-            <div class="label reveal">IDENTITY &amp; RULES</div>
-            <h2 class="reveal">System<br>Prompts.</h2>
-            <div class="comparison reveal" style="margin-top: var(--content-gap);">
-                <div class="comparison-col">
-                    <div class="label" style="opacity: 0.4;">BAD</div>
-                    <div class="divider"></div>
-                    <div class="code-block" style="margin-top: 0;">
-                        "You are a helpful<br>assistant."
-                    </div>
-                </div>
-                <div class="comparison-col">
-                    <div class="label" style="color: var(--accent);">BETTER (BUT STILL PRETTY BAD)</div>
-                    <div class="divider"></div>
-                    <div class="code-block" style="margin-top: 0;">
-                        "You are a support agent for<br>
-                        Acme Corp. You have access to<br>
-                        tickets and KB. <span class="accent">Never issue<br>
-                        refunds over $100 without<br>
-                        human approval.</span>"
-                    </div>
-                </div>
-            </div>
-            <p class="body-text reveal" style="margin-top: var(--element-gap);">The best prompts have great <strong>structure</strong>. Check out the <a href="https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/claude-prompting-best-practices" target="_blank" style="color: var(--accent); text-decoration: underline;">Claude Prompting Best Practices</a> guide &rarr;</p>
-        </div>
-    </section>
-
-    <!-- ===========================================
-         SLIDE 8: CONTEXT & MEMORY
-         =========================================== -->
-    <section class="slide content-slide" aria-label="Context and Memory">
-        <span class="slide-num">09 / 14</span>
-        <div class="slide-content">
-            <div class="label reveal">PERSISTENCE</div>
-            <h2 class="reveal">Context &amp;<br>Memory.</h2>
-            <!-- Context rot chart -->
-            <div class="reveal" style="margin-top: var(--content-gap); display: flex; gap: clamp(1rem, 3vw, 3rem); align-items: flex-start;">
-                <div style="flex: 1;">
-                    <svg width="100%" height="220" viewBox="0 0 300 140" preserveAspectRatio="xMidYMid meet" style="display: block; overflow: visible;">
-                        <!-- Axes -->
-                        <line x1="40" y1="10" x2="40" y2="120" stroke="#111" stroke-width="1.5"/>
-                        <line x1="40" y1="120" x2="290" y2="120" stroke="#111" stroke-width="1.5"/>
-                        <!-- Labels -->
-                        <text x="15" y="65" font-family="IBM Plex Mono" font-size="7" fill="#111" text-anchor="middle" transform="rotate(-90, 15, 65)" text-transform="uppercase" letter-spacing="0.1em">REASONING</text>
-                        <text x="165" y="137" font-family="IBM Plex Mono" font-size="7" fill="#111" text-anchor="middle" letter-spacing="0.1em">CONTEXT LENGTH</text>
-                        <!-- Good zone -->
-                        <path d="M 40 20 Q 100 22 150 30 Q 180 38 200 55" fill="none" stroke="#111" stroke-width="2.5"/>
-                        <!-- Drop off zone -->
-                        <path d="M 200 55 Q 230 80 260 110" fill="none" stroke="#E8611A" stroke-width="2.5"/>
-                        <!-- 200K marker -->
-                        <line x1="200" y1="10" x2="200" y2="120" stroke="#E8611A" stroke-width="1" stroke-dasharray="4,3"/>
-                        <text x="200" y="8" font-family="IBM Plex Mono" font-size="7" fill="#E8611A" text-anchor="middle" font-weight="700">~200K</text>
-                    </svg>
-                    <p class="body-text" style="opacity: 0.6; margin-top: 0.3em;">Even with 1M token windows, reasoning degrades past ~200K. <strong style="color: var(--accent);">Context rot is real.</strong></p>
-                </div>
-                <div style="flex: 1;">
-                    <div class="label">WHAT'S IN YOUR MEMORY</div>
-                    <div class="divider" style="margin-bottom: 0.5em;"></div>
-                    <ul class="bullet-list" style="gap: clamp(0.3rem, 0.6vh, 0.5rem);">
-                        <li>System prompt</li>
-                        <li>Tool definitions</li>
-                        <li>Skills / .md files</li>
-                        <li>Conversation history</li>
-                    </ul>
-                    <p class="body-text" style="margin-top: 0.8em; color: var(--accent); font-weight: 500;">Less bloat in memory = better agent. Find the balance.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- ===========================================
-         SLIDE 9: MODEL SELECTION
-         =========================================== -->
-    <section class="slide content-slide" aria-label="Model Selection">
-        <span class="slide-num">10 / 14</span>
-        <div class="slide-content">
-            <div class="label reveal">CHOOSING RIGHT</div>
-            <h2 class="reveal">Model<br>Selection.</h2>
-            <div class="tier-grid">
-                <div class="tier reveal">
-                    <div class="tier-label">OPENAI</div>
-                    <div class="divider"></div>
-                    <div class="tier-models">GPT-5 mini (high)</div>
-                    <div class="tier-use">Agentic index: <strong>45</strong>. Strong tool calling, good reasoning.</div>
-                </div>
-                <div class="tier reveal">
-                    <div class="tier-label" style="color: var(--accent);">ANTHROPIC</div>
-                    <div class="divider"></div>
-                    <div class="tier-models">Claude 4.5 Haiku</div>
-                    <div class="tier-use">Agentic index: <strong>40</strong>. Fast, reliable, great for most agent tasks.</div>
-                </div>
-                <div class="tier reveal">
-                    <div class="tier-label">GOOGLE</div>
-                    <div class="divider"></div>
-                    <div class="tier-models">Gemini 3.1 Flash Lite</div>
-                    <div class="tier-use">Agentic index: <strong>26</strong>. Cheapest, fastest. Good for simple tasks.</div>
-                </div>
-            </div>
-            <p class="body-text reveal" style="margin-top: var(--element-gap);">Not every task needs the most powerful model. Different models have different <strong>agentic capabilities</strong> &mdash; <span style="color: var(--accent);">a model that isn't the "smartest" may have better tool calling and agentic performance.</span></p>
-            <div class="reveal" style="margin-top: var(--element-gap); display: flex; gap: clamp(0.5rem, 1.5vw, 1.5rem);">
-                <a href="https://skatebench.t3.gg/" target="_blank" class="cta" style="font-size: var(--small-size);">SKATEBENCH &mdash; RANKS MODELS BY NAMING SKATEBOARD TRICKS &rarr;</a>
-                <a href="https://artificialanalysis.ai/models/capabilities/agentic" target="_blank" class="cta" style="font-size: var(--small-size);">ARTIFICIAL ANALYSIS &mdash; AGENTIC INDEX SCORES &rarr;</a>
-            </div>
-        </div>
-    </section>
-
-    <!-- ===========================================
-         SLIDE 10: MODEL ROUTING
-         =========================================== -->
-    <section class="slide content-slide" aria-label="Model Routing">
-        <span class="slide-num">11 / 14</span>
-        <div class="slide-content">
-            <div class="label reveal">IN PRACTICE</div>
-            <h2 class="reveal">Model<br>Routing.</h2>
+            <div class="label reveal">THE IDEA</div>
+            <h2 class="reveal">What is<br>Web Agent?</h2>
+            <p class="body-text reveal" style="margin-top: var(--content-gap);">A web automation API by <strong>TinyFish</strong>. Give it a URL and a goal in plain English &mdash; it drives a real browser and returns <strong>structured JSON</strong>.</p>
             <div class="flow" style="margin-top: var(--content-gap);">
-                <div class="flow-step">Haiku<br><span style="font-weight: 400; font-size: 0.7em;">CLASSIFY</span></div>
+                <div class="flow-step">URL + Goal</div>
                 <span class="flow-arrow">&rarr;</span>
-                <div class="flow-step" style="border-color: var(--accent);">Sonnet<br><span style="font-weight: 400; font-size: 0.7em;">HANDLE</span></div>
+                <div class="flow-step">Real browser<br><span style="font-weight: 400; font-size: 0.7em;">clicks, types, scrolls</span></div>
                 <span class="flow-arrow">&rarr;</span>
-                <div class="flow-step">Opus<br><span style="font-weight: 400; font-size: 0.7em;">EDGE CASES</span></div>
+                <div class="flow-step" style="border-color: var(--accent); color: var(--accent);">JSON result</div>
             </div>
             <div class="hairline reveal" style="margin-top: var(--content-gap);"></div>
-            <p class="body-text reveal" style="margin-top: var(--element-gap);">Like a company &mdash; you don't send the CEO to answer every support ticket.</p>
             <ul class="bullet-list reveal" style="margin-top: var(--element-gap);">
-                <li>A <strong>10x cheaper</strong> model that handles 80% of cases saves you a ton</li>
-                <li>Latency matters for user-facing agents &mdash; faster model = better UX</li>
-                <li>Consider: <strong>cost</strong> &middot; <strong>latency</strong> &middot; <strong>complexity</strong> &middot; <strong>tool calling support</strong></li>
+                <li>No CSS selectors, no XPath &mdash; just <strong>natural language goals</strong></li>
+                <li>Works on JS-heavy, authenticated, and bot-protected sites</li>
+                <li>SDKs for <strong>Python</strong> (<code>tinyfish</code>) and <strong>TypeScript</strong> (<code>@tiny-fish/sdk</code>)</li>
             </ul>
         </div>
     </section>
 
     <!-- ===========================================
-         SLIDE 12: NOW YOU BUILD
+         SLIDE 3: GET YOUR API KEY
          =========================================== -->
-    <section class="slide title-slide" aria-label="Transition to Arena">
-        <span class="slide-num">12 / 14</span>
-        <div class="pill reveal" style="margin-bottom: var(--content-gap);">THE ARENA</div>
-        <h1 class="reveal">Now You<br>Build.</h1>
-        <p class="subtitle reveal">You've learned the theory. Time to apply it.</p>
-        <div class="cta reveal" style="margin-top: var(--content-gap);">LET'S GO &rarr;</div>
-        <div class="ticker">
-            <span class="ticker-inner">
-                OBSERVE &#9670; DECIDE &#9670; ACT &#9670; REPEAT &#9670; BUILD TOOLS &#9670; WRITE PROMPTS &#9670; SHIP AGENTS &#9670; BREAK THINGS &#9670;
-                OBSERVE &#9670; DECIDE &#9670; ACT &#9670; REPEAT &#9670; BUILD TOOLS &#9670; WRITE PROMPTS &#9670; SHIP AGENTS &#9670; BREAK THINGS &#9670;
-            </span>
+    <section class="slide content-slide" aria-label="Get Your API Key">
+        <span class="slide-num">03 / 09</span>
+        <div class="slide-content">
+            <div class="label reveal">STEP 1</div>
+            <h2 class="reveal">Get Your<br>API Key.</h2>
+            <div class="reveal" style="margin-top: var(--content-gap); display: flex; align-items: center; gap: clamp(1rem, 3vw, 3rem);">
+                <div style="flex: 1;">
+                    <div class="code-block" style="margin-top: 0;">
+                        <span class="dim">1.</span> Go to <span class="accent">agent.tinyfish.ai/api-keys</span><br>
+                        <span class="dim">2.</span> Sign up / log in<br>
+                        <span class="dim">3.</span> Click <span class="accent">"Create API Key"</span><br>
+                        <span class="dim">4.</span> Copy &amp; store it &mdash; <span class="accent">shown only once!</span>
+                    </div>
+                    <p class="body-text" style="margin-top: var(--element-gap); opacity: 0.6;">Keys start with <strong>sk-tinyfish-</strong>. Never commit them to version control.</p>
+                    <div class="code-block" style="margin-top: var(--element-gap);">
+                        <span class="dim"># Add to your shell profile (.bashrc, .zshrc)</span><br>
+                        <span class="accent">export</span> TINYFISH_API_KEY=<span class="accent">"sk-tinyfish-*****"</span>
+                    </div>
+                </div>
+            </div>
         </div>
     </section>
 
     <!-- ===========================================
-         SLIDE 12.5: NEXUS CORP
+         SLIDE 4: THE THREE ENDPOINTS
          =========================================== -->
-    <section class="slide title-slide" aria-label="NEXUS Corp" style="background: #1a1a1a; background-image: none;">
-        <span class="slide-num" style="color: rgba(255,255,255,0.3);">13 / 16</span>
-        <div class="pill reveal" style="margin-bottom: var(--content-gap);">THE ARENA</div>
-        <h1 class="reveal" style="color: white;">NEXUS Corp.<br>Year 2045.</h1>
-        <div class="reveal" style="margin-top: var(--content-gap); font-family: var(--font-mono); font-size: var(--body-size); color: rgba(255,255,255,0.5); line-height: 2; max-width: 50ch;">
-            <p>Anomalous activity detected in critical infrastructure.</p>
-            <p>An insider is embedded. A killswitch is armed.</p>
-            <p>Your mission: build AI tools to investigate and disarm.</p>
-        </div>
-        <div class="reveal" style="margin-top: var(--content-gap); background: rgba(255,255,255,0.08); padding: 0.75em 1.5em; border-radius: 4px; display: inline-block;">
-            <span style="font-family: var(--font-mono); font-size: var(--body-size); color: var(--accent); font-weight: 700;">arena-murex.vercel.app</span>
+    <section class="slide content-slide" aria-label="The Endpoints">
+        <span class="slide-num">04 / 09</span>
+        <div class="slide-content">
+            <div class="label reveal">THE API</div>
+            <h2 class="reveal">Three<br>Endpoints.</h2>
+            <div class="three-up" style="margin-top: var(--content-gap);">
+                <div class="card reveal">
+                    <div class="card-title">/run</div>
+                    <div class="card-text"><strong>Synchronous.</strong> Send request, wait, get result. Simplest option.</div>
+                    <div class="card-text" style="color: var(--accent); margin-top: 0.5em; font-weight: 500;">Quick tasks under 30s</div>
+                </div>
+                <div class="card reveal">
+                    <div class="card-title">/run-async</div>
+                    <div class="card-text"><strong>Fire &amp; check.</strong> Returns a run_id immediately. Poll for result later.</div>
+                    <div class="card-text" style="color: var(--accent); margin-top: 0.5em; font-weight: 500;">Batch processing, long tasks</div>
+                </div>
+                <div class="card reveal">
+                    <div class="card-title">/run-sse</div>
+                    <div class="card-text"><strong>Live stream.</strong> Real-time SSE events: STARTED, PROGRESS, COMPLETE.</div>
+                    <div class="card-text" style="color: var(--accent); margin-top: 0.5em; font-weight: 500;">User-facing apps, progress UI</div>
+                </div>
+            </div>
+            <div class="code-block reveal" style="margin-top: var(--content-gap);">
+                <span class="accent">POST</span> https://agent.tinyfish.ai/v1/automation/<span class="accent">{run | run-async | run-sse}</span><br>
+                <span class="dim">Header:</span> X-API-Key: <span class="accent">$TINYFISH_API_KEY</span><br>
+                <span class="dim">Body:</span>&nbsp;&nbsp; { <span class="accent">"url"</span>: "...", <span class="accent">"goal"</span>: "...", <span class="accent">"browser_profile"</span>: "lite" }
+            </div>
         </div>
     </section>
 
     <!-- ===========================================
-         SLIDE 13.5: THE CHALLENGES
+         SLIDE 5: USE CASES
          =========================================== -->
-    <section class="slide content-slide" aria-label="The Challenges" style="background: var(--bg);">
-        <span class="slide-num">14 / 17</span>
-        <div class="slide-content" style="justify-content: center;">
-            <p class="label reveal" style="margin-bottom: var(--element-gap);">ESCALATING DIFFICULTY</p>
-            <h2 class="reveal" style="font-family: var(--font-headline); font-weight: 900; font-size: var(--h2-size); line-height: 1;">The<br>Challenges.</h2>
-            <div style="display: flex; flex-direction: column; gap: clamp(0.5rem, 1.5vw, 1.25rem); margin-top: var(--content-gap); width: 100%;">
-                <!-- Challenge 1 -->
-                <div class="reveal" style="display: grid; grid-template-columns: auto 1fr 1.2fr auto; gap: clamp(0.5rem, 2vw, 2rem); align-items: center; padding-bottom: clamp(0.5rem, 1vw, 1rem); border-bottom: 1px solid var(--rule);">
-                    <span style="font-family: var(--font-headline); font-weight: 900; font-size: clamp(1.2rem, 2vw, 1.8rem); color: var(--accent);">01</span>
-                    <span style="font-family: var(--font-mono); font-weight: 700; font-size: var(--label-size); text-transform: uppercase; letter-spacing: 0.15em;">Find the Insider</span>
-                    <span style="font-family: var(--font-mono); font-size: var(--small-size); color: rgba(0,0,0,0.5);">Unauthorized access to Server Room B at 23:47, March 15. Identify who.</span>
-                    <span style="font-family: var(--font-mono); font-size: var(--small-size); background: var(--ink); color: white; padding: 0.4em 1em; border-radius: 3px;">/api/logs</span>
+    <section class="slide content-slide" aria-label="Use Cases">
+        <span class="slide-num">05 / 09</span>
+        <div class="slide-content" style="flex-direction: row; align-items: center; gap: clamp(1.5rem, 4vw, 4rem);">
+            <!-- Video demo -->
+            <div class="reveal" style="flex: 1.2; min-width: 0;">
+                <video autoplay loop muted playsinline style="width: 100%; max-height: min(65vh, 500px); object-fit: contain; border-radius: 4px; border: 2px solid var(--ink);">
+                    <source src="competition-intelligence.mp4" type="video/mp4">
+                </video>
+                <p style="font-family: var(--font-mono); font-size: var(--small-size); opacity: 0.5; margin-top: 0.5em; text-align: center;">Competitor pricing analysis &mdash; live demo</p>
+            </div>
+            <!-- Use case cards -->
+            <div style="flex: 1; display: flex; flex-direction: column; gap: var(--content-gap);">
+                <div class="label reveal">USE CASES</div>
+                <h2 class="reveal" style="font-size: clamp(1.5rem, 4vw, 3rem);">What You<br>Can Build.</h2>
+                <div class="card reveal" style="border-top: 2px solid var(--ink); padding-top: var(--element-gap);">
+                    <div class="card-title">Scraping.</div>
+                    <div class="card-text">"Extract all product names, prices, and stock status"</div>
                 </div>
-                <!-- Challenge 2 -->
-                <div class="reveal" style="display: grid; grid-template-columns: auto 1fr 1.2fr auto; gap: clamp(0.5rem, 2vw, 2rem); align-items: center; padding-bottom: clamp(0.5rem, 1vw, 1rem); border-bottom: 1px solid var(--rule);">
-                    <span style="font-family: var(--font-headline); font-weight: 900; font-size: clamp(1.2rem, 2vw, 1.8rem); color: var(--accent);">02</span>
-                    <span style="font-family: var(--font-mono); font-weight: 700; font-size: var(--label-size); text-transform: uppercase; letter-spacing: 0.15em;">Trace Comms</span>
-                    <span style="font-family: var(--font-mono); font-size: var(--small-size); color: rgba(0,0,0,0.5);">Search the insider's messages. Uncover the plot and accomplices.</span>
-                    <span style="font-family: var(--font-mono); font-size: var(--small-size); background: var(--ink); color: white; padding: 0.4em 1em; border-radius: 3px;">/api/communications</span>
+                <div class="card reveal" style="border-top: 2px solid var(--ink); padding-top: var(--element-gap);">
+                    <div class="card-title">Form Filling.</div>
+                    <div class="card-text">"Fill the signup form and click Submit"</div>
                 </div>
-                <!-- Challenge 3 -->
-                <div class="reveal" style="display: grid; grid-template-columns: auto 1fr 1.2fr auto; gap: clamp(0.5rem, 2vw, 2rem); align-items: center; padding-bottom: clamp(0.5rem, 1vw, 1rem); border-bottom: 1px solid var(--rule);">
-                    <span style="font-family: var(--font-headline); font-weight: 900; font-size: clamp(1.2rem, 2vw, 1.8rem); color: var(--accent);">03</span>
-                    <span style="font-family: var(--font-mono); font-weight: 700; font-size: var(--label-size); text-transform: uppercase; letter-spacing: 0.15em;">Map the Network</span>
-                    <span style="font-family: var(--font-mono); font-size: var(--small-size); color: rgba(0,0,0,0.5);">Find everyone within 2 degrees of the insider. Assess access levels.</span>
-                    <span style="font-family: var(--font-mono); font-size: var(--small-size); background: var(--ink); color: white; padding: 0.4em 1em; border-radius: 3px;">multi-endpoint</span>
+                <div class="card reveal" style="border-top: 2px solid var(--ink); padding-top: var(--element-gap);">
+                    <div class="card-title">Multi-step.</div>
+                    <div class="card-text">"Log in, navigate to dashboard, extract data"</div>
                 </div>
-                <!-- Challenge 4 -->
-                <div class="reveal" style="display: grid; grid-template-columns: auto 1fr 1.2fr auto; gap: clamp(0.5rem, 2vw, 2rem); align-items: center; padding-bottom: clamp(0.5rem, 1vw, 1rem); border-bottom: 1px solid var(--rule);">
-                    <span style="font-family: var(--font-headline); font-weight: 900; font-size: clamp(1.2rem, 2vw, 1.8rem); color: var(--accent);">04</span>
-                    <span style="font-family: var(--font-mono); font-weight: 700; font-size: var(--label-size); text-transform: uppercase; letter-spacing: 0.15em;">Locate the Threat</span>
-                    <span style="font-family: var(--font-mono); font-size: var(--small-size); color: rgba(0,0,0,0.5);">A compromised employee booked a room after hours. Find who, where, what.</span>
-                    <span style="font-family: var(--font-mono); font-size: var(--small-size); background: var(--ink); color: white; padding: 0.4em 1em; border-radius: 3px;">/api/facilities/*</span>
+                <p class="body-text reveal" style="font-size: var(--small-size); opacity: 0.6; margin-top: 0;">Use <strong style="color: var(--accent);">stealth</strong> mode for bot-protected sites. Add <strong style="color: var(--accent);">proxy_config</strong> for geo-restricted content.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===========================================
+         SLIDE 6: COMMON PATTERNS
+         =========================================== -->
+    <section class="slide content-slide" aria-label="Common Patterns">
+        <span class="slide-num">06 / 09</span>
+        <div class="slide-content">
+            <div class="label reveal">TIPS &amp; TRICKS</div>
+            <h2 class="reveal">Common<br>Patterns.</h2>
+            <div class="three-up" style="margin-top: var(--content-gap);">
+                <div class="card reveal">
+                    <div class="card-title">Live Preview.</div>
+                    <div class="card-text">Every run returns a <strong>streaming_url</strong> &mdash; a live browser feed you can embed in an <code>&lt;iframe&gt;</code>.</div>
+                    <div class="code-block" style="margin-top: 0.5em; padding: 0.5em 0.75em; font-size: var(--small-size); line-height: 1.5;">
+                        <span class="dim">// SSE event:</span><br>
+                        { type: <span class="accent">"STREAMING_URL"</span>,<br>
+                        &nbsp;&nbsp;streaming_url: <span class="accent">"https://..."</span> }<br><br>
+                        <span class="dim">// Embed it:</span><br>
+                        &lt;iframe src={url} /&gt;
+                    </div>
+                    <div class="card-text" style="color: var(--accent); margin-top: 0.5em; font-weight: 500;">Valid 24hrs. Read-only. Show users the "fish swimming"</div>
                 </div>
-                <!-- Challenge 5 -->
-                <div class="reveal" style="display: grid; grid-template-columns: auto 1fr 1.2fr auto; gap: clamp(0.5rem, 2vw, 2rem); align-items: center;">
-                    <span style="font-family: var(--font-headline); font-weight: 900; font-size: clamp(1.2rem, 2vw, 1.8rem); color: var(--accent);">05</span>
-                    <span style="font-family: var(--font-mono); font-weight: 700; font-size: var(--label-size); text-transform: uppercase; letter-spacing: 0.15em;">Secure the Server</span>
-                    <span style="font-family: var(--font-mono); font-size: var(--small-size); color: rgba(0,0,0,0.5);">Server NX-7042 in Room F-12. Apply the correct emergency security patch.</span>
-                    <span style="font-family: var(--font-mono); font-size: var(--small-size); background: var(--accent); color: white; padding: 0.4em 1em; border-radius: 3px;">/api/systems/*</span>
+                <div class="card reveal">
+                    <div class="card-title">Bot Protection.</div>
+                    <div class="card-text">Start with <strong>lite</strong>. If blocked, retry with <strong>stealth + proxy</strong>.</div>
+                    <div class="code-block" style="margin-top: 0.5em; padding: 0.5em 0.75em; font-size: var(--small-size); line-height: 1.5;">
+                        browser_profile: <span class="accent">"stealth"</span>,<br>
+                        proxy_config: {<br>
+                        &nbsp;&nbsp;enabled: <span class="accent">true</span>,<br>
+                        &nbsp;&nbsp;country_code: <span class="accent">"US"</span><br>
+                        }
+                    </div>
+                    <div class="card-text" style="color: var(--accent); margin-top: 0.5em; font-weight: 500;">Proxies: US, GB, CA, DE, FR, JP, AU</div>
+                </div>
+                <div class="card reveal">
+                    <div class="card-title">Human-like Goals.</div>
+                    <div class="card-text">Describe elements <strong>visually</strong>, not by selector. Number your steps. Add waits.</div>
+                    <div class="code-block" style="margin-top: 0.5em; padding: 0.5em 0.75em; font-size: var(--small-size); line-height: 1.5;">
+                        <span class="accent">"1. Dismiss cookie banner</span><br>
+                        <span class="accent">&nbsp;2. Wait 2 seconds</span><br>
+                        <span class="accent">&nbsp;3. Click the blue Add to</span><br>
+                        <span class="accent">&nbsp;&nbsp;&nbsp;&nbsp;Cart button below price</span><br>
+                        <span class="accent">&nbsp;4. Extract cart total"</span>
+                    </div>
+                    <div class="card-text" style="color: var(--accent); margin-top: 0.5em; font-weight: 500;">Visual descriptions beat CSS selectors</div>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- ===========================================
-         SLIDE: HOW TO ADD A TOOL
+         SLIDE 7: CODE EXAMPLE — PYTHON
          =========================================== -->
-    <section class="slide content-slide" aria-label="How to Add a Tool" style="background: #1a1a1a; background-image: none;">
-        <span class="slide-num" style="color: rgba(255,255,255,0.3);">15 / 17</span>
+    <section class="slide content-slide" aria-label="Code Example Python" style="background: #1a1a1a; background-image: none;">
+        <span class="slide-num" style="color: rgba(255,255,255,0.3);">07 / 09</span>
         <div class="slide-content" style="justify-content: center;">
-            <p class="label reveal" style="color: var(--accent); margin-bottom: 0.2em;">FOR EACH CHALLENGE</p>
-            <h2 class="reveal" style="color: white; font-family: var(--font-headline); font-weight: 900; font-size: var(--h3-size); line-height: 1; margin-bottom: clamp(0.5rem, 1.5vw, 1rem);">Wiring a Tool.</h2>
-            <div style="display: flex; flex-direction: column; gap: clamp(0.4rem, 1vw, 0.75rem); width: 100%;">
-                <!-- Step 1 -->
-                <div class="reveal" style="display: grid; grid-template-columns: auto 1fr; gap: clamp(0.5rem, 1.5vw, 1rem); align-items: start;">
-                    <span style="font-family: var(--font-headline); font-weight: 900; font-size: clamp(1.2rem, 2vw, 1.8rem); color: var(--accent); line-height: 1;">1</span>
-                    <div>
-                        <p style="font-family: var(--font-headline); font-weight: 700; font-size: var(--body-size); color: white;">Create the tool file</p>
-                        <p style="font-family: var(--font-mono); font-size: var(--small-size); color: rgba(255,255,255,0.5); margin-top: 0.3em;">lib/ai/tools/your-tool.ts</p>
-                        <div style="background: rgba(255,255,255,0.06); border-radius: 6px; padding: 0.75em 1em; margin-top: 0.5em; font-family: var(--font-mono); font-size: var(--small-size); color: rgba(255,255,255,0.7); line-height: 1.6; white-space: pre;">export const yourTool = tool({
-  description: "What this tool does",
-  parameters: z.object({ ... }),  <span style="color: var(--accent);">// copy from docs</span>
-  execute: async ({ ... }) => {   <span style="color: var(--accent);">// copy from docs</span>
-    const res = await fetch(...)
-    return res.json()
-  }
-})</div>
-                    </div>
+            <p class="label reveal" style="color: var(--accent); margin-bottom: 0.2em;">PYTHON SDK</p>
+            <h2 class="reveal" style="color: white; font-family: var(--font-headline); font-weight: 900; line-height: 1; margin-bottom: clamp(0.5rem, 1.5vw, 1rem);">Quick Start.</h2>
+            <div style="background: rgba(255,255,255,0.06); border-radius: 6px; padding: clamp(0.75em, 2vw, 1.25em); font-family: var(--font-mono); font-size: clamp(0.65rem, 1.1vw, 0.9rem); color: rgba(255,255,255,0.7); line-height: 1.8; white-space: pre; overflow: hidden;" class="reveal"><span style="color: rgba(255,255,255,0.35);"># pip install tinyfish</span>
+<span style="color: var(--accent);">from</span> tinyfish <span style="color: var(--accent);">import</span> TinyFish
+
+client = TinyFish()  <span style="color: rgba(255,255,255,0.35);"># reads TINYFISH_API_KEY from env</span>
+
+<span style="color: var(--accent);">with</span> client.agent.stream(
+    url=<span style="color: rgba(255,255,255,0.5);">"https://scrapeme.live/shop"</span>,
+    goal=<span style="color: rgba(255,255,255,0.5);">"Extract the first 2 product names and prices"</span>,
+) <span style="color: var(--accent);">as</span> stream:
+    <span style="color: var(--accent);">for</span> event <span style="color: var(--accent);">in</span> stream:
+        print(event)</div>
+            <div class="reveal" style="background: rgba(255,255,255,0.04); border-radius: 6px; padding: clamp(0.5em, 1.5vw, 0.75em); margin-top: var(--element-gap); font-family: var(--font-mono); font-size: clamp(0.55rem, 0.9vw, 0.75rem); color: rgba(255,255,255,0.5); line-height: 1.6; white-space: pre; overflow: hidden;"><span style="color: rgba(255,255,255,0.3);"># Output:</span>
+{'type': 'STARTED', 'run_id': 'abc123'}
+{'type': 'PROGRESS', 'run_id': 'abc123', 'purpose': 'Visit the page to extract product info'}
+{'type': 'COMPLETE', 'status': 'COMPLETED', 'result': {
+    "products": [{"name": "Bulbasaur", "price": "$63.00"}, {"name": "Ivysaur", "price": "$87.00"}]
+}}</div>
+            <p class="reveal" style="margin-top: var(--element-gap); font-family: var(--font-mono); font-size: var(--small-size); color: rgba(255,255,255,0.4); text-align: center;">TypeScript SDK: <span style="color: var(--accent);">npm install @tiny-fish/sdk</span> &mdash; same API, same methods</p>
+        </div>
+    </section>
+
+    <!-- ===========================================
+         SLIDE 7: CODE EXAMPLE — TYPESCRIPT
+         =========================================== -->
+    <section class="slide content-slide" aria-label="Code Example TypeScript" style="background: #1a1a1a; background-image: none;">
+        <span class="slide-num" style="color: rgba(255,255,255,0.3);">08 / 09</span>
+        <div class="slide-content" style="justify-content: center;">
+            <p class="label reveal" style="color: var(--accent); margin-bottom: 0.2em;">TYPESCRIPT SDK</p>
+            <h2 class="reveal" style="color: white; font-family: var(--font-headline); font-weight: 900; line-height: 1; margin-bottom: clamp(0.5rem, 1.5vw, 1rem);">Quick Start.</h2>
+            <div style="background: rgba(255,255,255,0.06); border-radius: 6px; padding: clamp(0.75em, 2vw, 1.25em); font-family: var(--font-mono); font-size: clamp(0.65rem, 1.1vw, 0.9rem); color: rgba(255,255,255,0.7); line-height: 1.8; white-space: pre; overflow: hidden;" class="reveal"><span style="color: rgba(255,255,255,0.35);">// npm install @tiny-fish/sdk</span>
+<span style="color: var(--accent);">import</span> { TinyFish, EventType, RunStatus } <span style="color: var(--accent);">from</span> <span style="color: rgba(255,255,255,0.5);">"@tiny-fish/sdk"</span>;
+
+<span style="color: var(--accent);">const</span> client = <span style="color: var(--accent);">new</span> TinyFish(); <span style="color: rgba(255,255,255,0.35);">// reads TINYFISH_API_KEY from env</span>
+
+<span style="color: var(--accent);">const</span> stream = <span style="color: var(--accent);">await</span> client.agent.stream({
+  url: <span style="color: rgba(255,255,255,0.5);">"https://scrapeme.live/shop"</span>,
+  goal: <span style="color: rgba(255,255,255,0.5);">"Extract all product names and prices"</span>,
+});
+
+<span style="color: var(--accent);">for await</span> (<span style="color: var(--accent);">const</span> event <span style="color: var(--accent);">of</span> stream) {
+  console.log(event.type, event);
+}</div>
+            <div class="reveal" style="margin-top: var(--content-gap); display: flex; gap: clamp(1rem, 3vw, 2rem); flex-wrap: wrap;">
+                <div style="flex: 1; min-width: 200px;">
+                    <div class="label" style="color: rgba(255,255,255,0.4); margin-bottom: 0.3em;">SYNC (SIMPLE)</div>
+                    <div style="background: rgba(255,255,255,0.04); border-radius: 6px; padding: 0.5em 0.75em; font-family: var(--font-mono); font-size: clamp(0.55rem, 0.9vw, 0.75rem); color: rgba(255,255,255,0.5); line-height: 1.6; white-space: pre;"><span style="color: var(--accent);">const</span> run = <span style="color: var(--accent);">await</span> client.agent.run({
+  url, goal
+});
+console.log(run.result);</div>
                 </div>
-                <!-- Step 2 -->
-                <div class="reveal" style="display: grid; grid-template-columns: auto 1fr; gap: clamp(0.5rem, 1.5vw, 1rem); align-items: start;">
-                    <span style="font-family: var(--font-headline); font-weight: 900; font-size: clamp(1.2rem, 2vw, 1.8rem); color: var(--accent); line-height: 1;">2</span>
-                    <div>
-                        <p style="font-family: var(--font-headline); font-weight: 700; font-size: var(--body-size); color: white;">Register the type</p>
-                        <p style="font-family: var(--font-mono); font-size: var(--small-size); color: rgba(255,255,255,0.5); margin-top: 0.3em;">lib/types.ts</p>
-                        <div style="background: rgba(255,255,255,0.06); border-radius: 6px; padding: 0.75em 1em; margin-top: 0.5em; font-family: var(--font-mono); font-size: var(--small-size); color: rgba(255,255,255,0.7); line-height: 1.6; white-space: pre;">yourTool: InferUITool&lt;typeof yourTool&gt;</div>
-                    </div>
-                </div>
-                <!-- Step 3 -->
-                <div class="reveal" style="display: grid; grid-template-columns: auto 1fr; gap: clamp(0.5rem, 1.5vw, 1rem); align-items: start;">
-                    <span style="font-family: var(--font-headline); font-weight: 900; font-size: clamp(1.2rem, 2vw, 1.8rem); color: var(--accent); line-height: 1;">3</span>
-                    <div>
-                        <p style="font-family: var(--font-headline); font-weight: 700; font-size: var(--body-size); color: white;">Add to chat route</p>
-                        <p style="font-family: var(--font-mono); font-size: var(--small-size); color: rgba(255,255,255,0.5); margin-top: 0.3em;">app/(chat)/api/chat/route.ts</p>
-                        <div style="background: rgba(255,255,255,0.06); border-radius: 6px; padding: 0.75em 1em; margin-top: 0.5em; font-family: var(--font-mono); font-size: var(--small-size); color: rgba(255,255,255,0.7); line-height: 1.6; white-space: pre;">import { yourTool } from "@/lib/ai/tools/your-tool"
-...
-tools: { yourTool, ... }</div>
-                    </div>
-                </div>
-                <!-- Step 4 -->
-                <div class="reveal" style="display: grid; grid-template-columns: auto 1fr; gap: clamp(0.5rem, 1.5vw, 1rem); align-items: start;">
-                    <span style="font-family: var(--font-headline); font-weight: 900; font-size: clamp(1.2rem, 2vw, 1.8rem); color: var(--accent); line-height: 1;">4</span>
-                    <div>
-                        <p style="font-family: var(--font-headline); font-weight: 700; font-size: var(--body-size); color: white;">Update system prompt</p>
-                        <p style="font-family: var(--font-mono); font-size: var(--small-size); color: rgba(255,255,255,0.5); margin-top: 0.3em;">lib/ai/prompts.ts</p>
-                        <div style="background: rgba(255,255,255,0.06); border-radius: 6px; padding: 0.75em 1em; margin-top: 0.5em; font-family: var(--font-mono); font-size: var(--small-size); color: rgba(255,255,255,0.7); line-height: 1.6; white-space: pre;">Tell the model when &amp; how to use your new tool</div>
-                    </div>
+                <div style="flex: 1; min-width: 200px;">
+                    <div class="label" style="color: rgba(255,255,255,0.4); margin-bottom: 0.3em;">ASYNC (BATCH)</div>
+                    <div style="background: rgba(255,255,255,0.04); border-radius: 6px; padding: 0.5em 0.75em; font-family: var(--font-mono); font-size: clamp(0.55rem, 0.9vw, 0.75rem); color: rgba(255,255,255,0.5); line-height: 1.6; white-space: pre;"><span style="color: var(--accent);">const</span> q = <span style="color: var(--accent);">await</span> client.agent.queue({
+  url, goal
+});
+<span style="color: rgba(255,255,255,0.35);">// poll: client.runs.get(q.run_id)</span></div>
                 </div>
             </div>
-            <p class="reveal" style="margin-top: var(--content-gap); font-family: var(--font-mono); font-size: var(--small-size); color: rgba(255,255,255,0.4); text-align: center;">Full code snippets at <span style="color: var(--accent);">arena-murex.vercel.app/docs</span></p>
+            <p class="reveal" style="margin-top: var(--element-gap); font-family: var(--font-mono); font-size: var(--small-size); color: rgba(255,255,255,0.4); text-align: center;">Full docs at <span style="color: var(--accent);">docs.tinyfish.ai</span></p>
         </div>
     </section>
 
     <!-- ===========================================
-         SLIDE: GO
-         =========================================== -->
-    <section class="slide title-slide" aria-label="Go" style="background: #1a1a1a; background-image: none;">
-        <span class="slide-num" style="color: rgba(255,255,255,0.3);">16 / 18</span>
-        <div class="slide-content" style="justify-content: flex-end; align-items: flex-start; padding-bottom: clamp(4rem, 10vh, 8rem);">
-            <h1 class="reveal" style="color: white; font-size: clamp(4rem, 12vw, 10rem); font-family: var(--font-headline); font-weight: 900; line-height: 0.9;">Go.</h1>
-            <p class="reveal" style="margin-top: var(--content-gap); font-family: var(--font-mono); font-size: var(--body-size); color: var(--accent); font-weight: 700;">arena-murex.vercel.app</p>
-        </div>
-        <div class="ticker" style="position: absolute; bottom: 0; left: 0; width: 100%;">
-            <span class="ticker-inner" style="color: rgba(255,255,255,0.6);">
-                OBSERVE &#9670; DECIDE &#9670; ACT &#9670; REPEAT &#9670; BUILD TOOLS &#9670; WRITE PROMPTS &#9670; SHIP AGENTS &#9670; BREAK THINGS &#9670;
-                OBSERVE &#9670; DECIDE &#9670; ACT &#9670; REPEAT &#9670; BUILD TOOLS &#9670; WRITE PROMPTS &#9670; SHIP AGENTS &#9670; BREAK THINGS &#9670;
-            </span>
-        </div>
-    </section>
-
-    <!-- ===========================================
-         SLIDE 13: TINYFISH
+         SLIDE 7: TINYFISH + QR CODES
          =========================================== -->
     <section class="slide" aria-label="TinyFish" style="padding: 0; background: #0a1628; background-image: none; overflow: hidden; position: relative;">
-        <span class="slide-num" style="color: rgba(255,255,255,0.3); z-index: 10;">13 / 14</span>
+        <span class="slide-num" style="color: rgba(255,255,255,0.3); z-index: 10;">09 / 09</span>
         <!-- Ocean waves -->
         <svg style="position: absolute; bottom: 0; left: 0; width: 100%; height: 45%;" viewBox="0 0 1440 320" preserveAspectRatio="none">
             <path fill="#0099ff" fill-opacity="0.3" d="M0,160L48,176C96,192,192,224,288,213.3C384,203,480,149,576,133.3C672,117,768,139,864,165.3C960,192,1056,224,1152,218.7C1248,213,1344,171,1392,149.3L1440,128L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z">
@@ -1099,60 +868,19 @@ tools: { yourTool, ... }</div>
         <img src="tinyfish.avif" alt="" style="position: absolute; width: 35px; top: 40%; right: 40%; z-index: 4; animation: fish3 12s ease-in-out infinite; transform: scaleX(-1); opacity: 0.6;">
         <!-- Content -->
         <div class="slide-content" style="justify-content: center; align-items: flex-start; z-index: 5; padding: var(--slide-padding);">
-            <div class="pill reveal" style="margin-bottom: var(--element-gap);">POWERED BY</div>
-            <h1 class="reveal" style="color: white; font-size: clamp(3rem, 9vw, 8rem); font-family: 'Host Grotesk', sans-serif; font-weight: 800;">TinyFish</h1>
-            <p class="reveal" style="color: var(--accent); font-family: 'Pristine', serif; font-weight: 700; font-size: clamp(1.2rem, 2.5vw, 2rem); max-width: 40ch; margin-top: var(--element-gap);">The web wasn't built for agents. We're fixing that.</p>
-        </div>
-    </section>
-
-    <!-- ===========================================
-         SLIDE 14: ACCELERATOR COVER
-         =========================================== -->
-    <section class="slide" aria-label="Accelerator Cover" style="padding: 0; background: #000; background-image: none; overflow: hidden; position: relative;">
-        <span class="slide-num" style="color: rgba(255,255,255,0.3); z-index: 10;">14 / 15</span>
-        <img src="Accelerator%20Cover.png" alt="TinyFish Accelerator" style="width: 100%; height: 100%; object-fit: cover; object-position: center center; position: absolute; top: 0; left: 0;">
-    </section>
-
-    <!-- ===========================================
-         SLIDE 15: QR CODES
-         =========================================== -->
-    <section class="slide content-slide" aria-label="QR Codes" style="position: relative;">
-        <!-- Decorative corner accents -->
-        <div style="position: absolute; top: var(--slide-padding); right: var(--slide-padding); width: 60px; height: 60px; border-top: 2px solid var(--accent); border-right: 2px solid var(--accent);"></div>
-        <div style="position: absolute; bottom: var(--slide-padding); left: var(--slide-padding); width: 60px; height: 60px; border-bottom: 2px solid var(--accent); border-left: 2px solid var(--accent);"></div>
-        <!-- Decorative diamonds -->
-        <div style="position: absolute; top: 15%; right: 12%; color: var(--accent); font-size: 0.8rem; opacity: 0.3;">&#9670;</div>
-        <div style="position: absolute; bottom: 20%; right: 8%; color: var(--accent); font-size: 0.5rem; opacity: 0.2;">&#9670;</div>
-        <div style="position: absolute; top: 25%; left: 8%; color: var(--ink); font-size: 0.6rem; opacity: 0.1;">&#9670;</div>
-        <!-- Content -->
-        <div class="slide-content" style="justify-content: center; align-items: center;">
-            <div class="pill reveal" style="margin-bottom: var(--element-gap);">TINYFISH</div>
-            <div class="reveal" style="display: flex; align-items: center; gap: clamp(0.5rem, 1.5vw, 1.5rem);">
-                <h2 style="font-family: 'Host Grotesk', sans-serif; font-weight: 800;">Get Involved.</h2>
-                <img src="tinyfish.avif" alt="" style="width: clamp(40px, 5vw, 60px); transform: scaleX(-1);">
-            </div>
-            <div class="reveal" style="display: flex; gap: clamp(2rem, 5vw, 5rem); margin-top: var(--content-gap); align-items: flex-start; justify-content: center; flex-wrap: wrap;">
-                <!-- Cookbook -->
-                <div style="display: flex; flex-direction: column; align-items: center; gap: 0.75em;">
-                    <img src="cookbook.png" alt="Cookbook QR Code" style="width: clamp(180px, 22vw, 280px); height: clamp(180px, 22vw, 280px); object-fit: contain; border: 2px solid var(--ink); border-radius: 2px; background: white;">
-                    <span style="font-family: var(--font-mono); font-size: var(--label-size); text-transform: uppercase; letter-spacing: 0.1em; font-weight: 700;">Cookbook</span>
-                    <span style="font-family: var(--font-mono); font-size: var(--small-size); opacity: 0.5;">Recipes &amp; examples</span>
+            <div class="pill reveal" style="margin-bottom: var(--element-gap);">GO BUILD</div>
+            <h1 class="reveal" style="color: white; font-size: clamp(2.5rem, 7vw, 6rem); font-family: 'Host Grotesk', sans-serif; font-weight: 800;">TinyFish</h1>
+            <p class="reveal" style="color: var(--accent); font-family: 'Pristine', serif; font-weight: 700; font-size: clamp(1rem, 2vw, 1.6rem); max-width: 40ch; margin-top: var(--element-gap);">The web wasn't built for agents. We're fixing that.</p>
+            <div class="reveal" style="display: flex; gap: clamp(1.5rem, 4vw, 4rem); margin-top: var(--content-gap); align-items: flex-start; flex-wrap: wrap;">
+                <div style="display: flex; flex-direction: column; align-items: center; gap: 0.5em;">
+                    <img src="cookbook.png" alt="Cookbook QR Code" style="width: clamp(120px, 15vw, 180px); height: clamp(120px, 15vw, 180px); object-fit: contain; border: 2px solid rgba(255,255,255,0.2); border-radius: 2px; background: white;">
+                    <span style="font-family: var(--font-mono); font-size: var(--small-size); text-transform: uppercase; letter-spacing: 0.1em; font-weight: 700; color: white;">Docs</span>
                 </div>
-                <!-- Accelerator -->
-                <div style="display: flex; flex-direction: column; align-items: center; gap: 0.75em;">
-                    <img src="accelerator.png" alt="Accelerator QR Code" style="width: clamp(180px, 22vw, 280px); height: clamp(180px, 22vw, 280px); object-fit: contain; border: 2px solid var(--accent); border-radius: 2px; background: white;">
-                    <span style="color: var(--accent); font-family: var(--font-mono); font-size: var(--label-size); text-transform: uppercase; letter-spacing: 0.1em; font-weight: 700;">Accelerator</span>
-                    <span style="font-family: var(--font-mono); font-size: var(--small-size); opacity: 0.5;">Join the program</span>
-                </div>
-                <!-- Hackathon -->
-                <div style="display: flex; flex-direction: column; align-items: center; gap: 0.75em;">
-                    <img src="sg%20hackathon%20interest%20form.png" alt="Hackathon QR Code" style="width: clamp(180px, 22vw, 280px); height: clamp(180px, 22vw, 280px); object-fit: contain; border: 2px solid var(--ink); border-radius: 2px; background: white;">
-                    <span style="font-family: var(--font-mono); font-size: var(--label-size); text-transform: uppercase; letter-spacing: 0.1em; font-weight: 700;">Hackathon</span>
-                    <span style="font-family: var(--font-mono); font-size: var(--small-size); opacity: 0.5;">Build with us</span>
+                <div style="display: flex; flex-direction: column; align-items: center; gap: 0.5em;">
+                    <img src="accelerator.png" alt="Accelerator QR Code" style="width: clamp(120px, 15vw, 180px); height: clamp(120px, 15vw, 180px); object-fit: contain; border: 2px solid var(--accent); border-radius: 2px; background: white;">
+                    <span style="color: var(--accent); font-family: var(--font-mono); font-size: var(--small-size); text-transform: uppercase; letter-spacing: 0.1em; font-weight: 700;">Accelerator</span>
                 </div>
             </div>
-            <div class="divider reveal" style="max-width: 200px; margin-top: 0;"></div>
-            <p class="reveal" style="margin-top: 0; text-align: center; color: var(--accent); font-family: 'Pristine', serif; font-weight: 700; font-size: clamp(0.9rem, 1.5vw, 1.3rem);">Scan any code to get started &rarr;</p>
         </div>
     </section>
 
