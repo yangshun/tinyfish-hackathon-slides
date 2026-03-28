@@ -112,11 +112,13 @@
         /* Labels — mono, all caps, wide tracking */
         .label {
             font-family: var(--font-mono);
-            font-size: var(--label-size);
+            font-size: 16px;
             font-weight: 500;
             text-transform: uppercase;
-            letter-spacing: 0.1em;
+            letter-spacing: 0.3em;
+            background-color: var(--accent);
             color: var(--ink);
+            padding: 6px 12px;
         }
 
         /* Body text */
@@ -624,7 +626,7 @@
             <div class="reveal" style="display: flex; align-items: center; gap: 0.6em; margin-bottom: clamp(1.5rem, 3vh, 2.5rem);">
                 <img src="tinyfish.avif" alt="TinyFish" style="width: 50px; height: 50px;">
             </div>
-            <h1 class="reveal" style="color: var(--bg); font-size: clamp(2.5rem, 6.5vw, 5.5rem); line-height: 1.05; font-family: var(--font-headline); font-weight: 900;">The TinyFish<br>Hackathon.</h1>
+            <h1 class="reveal" style="color: var(--bg); font-size: clamp(2.5rem, 6.5vw, 5.5rem); line-height: 1.05; font-family: var(--font-headline); font-weight: 900;">The TinyFish<br>Hackathon</h1>
             <p class="reveal" style="color: rgba(245,241,235,0.6); font-family: var(--font-mono); font-size: clamp(0.9rem, 1.4vw, 1.2rem); max-width: 50ch; margin-top: 0.8em; line-height: 1.6;">Build extraordinary things on the Open Web.</p>
             <p class="reveal" style="color: rgba(245,241,235,0.35); font-family: var(--font-mono); font-size: var(--small-size); margin-top: 1em;">Supported by <strong style="color: var(--bg);">OpenAI</strong> and <strong style="color: var(--bg);">Acacia College</strong></p>
         </div>
@@ -653,8 +655,8 @@
          =========================================== -->
     <section class="slide closing-slide" aria-label="The 2026 Playbook">
         <div class="slide-content" style="justify-content: center; align-items: flex-start; z-index: 5; padding: var(--slide-padding); gap: 0;">
-            <div class="label reveal" style="color: var(--accent);">The 2026 Playbook</div>
-            <h2 class="reveal" style="margin-top: 0.3em;">Compounding Skills</h2>
+            <div class="label reveal">The 2026 Playbook</div>
+            <h2 class="reveal" style="margin-top: 0.3em;">Compounding skills</h2>
             <div class="three-up" style="margin-top: var(--content-gap);">
                 <div class="card reveal">
                     <div style="font-family: var(--font-headline); font-weight: 900; font-size: clamp(1.5rem, 2.5vw, 2rem); color: var(--accent); line-height: 1;">01</div>
@@ -669,7 +671,7 @@
                 <div class="card reveal">
                     <div style="font-family: var(--font-headline); font-weight: 900; font-size: clamp(1.5rem, 2.5vw, 2rem); color: var(--accent); line-height: 1;">03</div>
                     <div class="card-title">Visibility</div>
-                    <div class="card-text">Put your work in public. Share your half-broken prototypes. Maximize the surface area of luck.</div>
+                    <div class="card-text">Put your work in public. Share your raw prototypes. Maximize the surface area of luck.</div>
                 </div>
             </div>
         </div>
@@ -680,7 +682,7 @@
          =========================================== -->
     <section class="slide closing-slide" aria-label="Agency">
         <div class="slide-content" style="justify-content: center; align-items: flex-start; z-index: 5; padding: var(--slide-padding); gap: 0;">
-            <div class="label reveal" style="color: var(--accent);">01 Agency</div>
+            <div class="label reveal">01 Agency</div>
             <div class="big-quote reveal" style="margin-top: 0.4em;">Don't wait for permission.<br><span class="accent-word">Ship anyway.</span></div>
             <p class="body-text reveal" style="margin-top: var(--content-gap); color: rgba(17,17,17,0.75); max-width: 50ch;">You can just build things.</p>
         </div>
@@ -691,7 +693,7 @@
          =========================================== -->
     <section class="slide closing-slide" aria-label="Depth">
         <div class="slide-content" style="justify-content: center; align-items: flex-start; z-index: 5; padding: var(--slide-padding); gap: 0;">
-            <div class="label reveal" style="color: var(--accent);">02 Depth</div>
+            <div class="label reveal">02 Depth</div>
             <div class="big-quote reveal" style="margin-top: 0.4em;">Go deep or <span class="accent-word">go home.</span></div>
             <p class="body-text reveal" style="margin-top: var(--content-gap); color: rgba(17,17,17,0.75); max-width: 50ch;">Depth is how you develop taste. And taste is the skill that compounds.</p>
         </div>
@@ -702,9 +704,9 @@
          =========================================== -->
     <section class="slide closing-slide" aria-label="Visibility">
         <div class="slide-content" style="justify-content: center; align-items: flex-start; z-index: 5; padding: var(--slide-padding); gap: 0;">
-            <div class="label reveal" style="color: var(--accent);">03 Visibility</div>
+            <div class="label reveal">03 Visibility</div>
             <div class="big-quote reveal" style="margin-top: 0.4em;">Put your work in <span class="accent-word">public.</span></div>
-            <p class="body-text reveal" style="margin-top: var(--content-gap); color: rgba(17,17,17,0.75); max-width: 55ch;">The people who are getting hired, funded, and noticed right now aren't the ones with the best r&eacute;sum&eacute;s. They're the ones with the biggest <strong style="color: var(--ink);">surface area of luck</strong>.</p>
+            <p class="body-text reveal" style="margin-top: var(--content-gap); color: rgba(17,17,17,0.75); max-width: 55ch;">The people who are getting hired, funded, and noticed right now aren't the ones with the best resumes. They're the ones with the biggest <strong style="color: var(--ink);">surface area of luck</strong>.</p>
         </div>
     </section>
 
@@ -713,7 +715,7 @@
          =========================================== -->
     <section class="slide closing-slide" aria-label="Your Inexperience Is an Edge">
         <div class="slide-content" style="justify-content: center; align-items: flex-start; z-index: 5; padding: var(--slide-padding); gap: 0;">
-            <h2 class="reveal" style="margin-top: 0.3em;">Your inexperience<br>is your edge</h2>
+            <h2 class="reveal" style="margin-top: 0.3em;">Your inexperience<br>is <span class="accent-word">your edge</span></h2>
             <p class="body-text reveal" style="margin-top: var(--content-gap); color: rgba(17,17,17,0.6); max-width: 55ch; line-height: 1.7;"><strong style="color: var(--ink);">Experience rot</strong> &mdash; when hard-won expertise becomes a liability because the world shifted and your instincts didn't.</p>
             <p class="body-text reveal" style="margin-top: var(--element-gap); color: rgba(17,17,17,0.6); max-width: 55ch; line-height: 1.7;">You don't have that baggage. You just reach for the best tool available today. The playing field is <strong style="color: var(--ink);">more level than anyone's willing to admit.</strong></p>
         </div>
@@ -724,7 +726,7 @@
          =========================================== -->
     <section class="slide closing-slide" aria-label="Make It Human">
         <div class="slide-content" style="justify-content: center; align-items: flex-start; z-index: 5; padding: var(--slide-padding); gap: 0;">
-            <div class="label reveal" style="color: var(--accent);">Make It Human</div>
+            <div class="label reveal">Make It Human</div>
             <div class="big-quote reveal" style="margin-top: 0.4em; max-width: 20ch; border-left: 4px solid var(--accent); padding-left: clamp(0.8rem, 2vw, 1.5rem);">A real person <span class="accent-word">gave a damn</span> about this.</div>
             <p class="body-text reveal" style="margin-top: var(--content-gap); color: rgba(17,17,17,0.75); max-width: 55ch; line-height: 1.7;">AI can write your code, design your UI, draft your pitch. It cannot care about the problem. When two projects have the same technical quality, the one that wins is the one where you can feel a real person behind it.</p>
         </div>
