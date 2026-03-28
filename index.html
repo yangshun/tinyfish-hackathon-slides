@@ -751,7 +751,6 @@
                 this.isScrolling = false;
                 this.setupIntersectionObserver();
                 this.setupKeyboardNav();
-                this.setupTouchNav();
                 this.setupWheelNav();
                 this.setupProgressBar();
                 this.setupNavDots();
@@ -816,27 +815,12 @@
                 });
             }
 
-            setupTouchNav() {
-                let startY = 0;
-                document.addEventListener('touchstart', (e) => {
-                    startY = e.touches[0].clientY;
-                }, { passive: true });
-
-                document.addEventListener('touchend', (e) => {
-                    const diff = startY - e.changedTouches[0].clientY;
-                    if (Math.abs(diff) > 50) {
-                        if (diff > 0) this.goToSlide(this.currentSlide + 1);
-                        else this.goToSlide(this.currentSlide - 1);
-                    }
-                }, { passive: true });
-            }
-
             setupWheelNav() {
                 let lastScroll = 0;
                 document.addEventListener('wheel', (e) => {
                     e.preventDefault();
                     const now = Date.now();
-                    if (now - lastScroll < 800) return;
+                    if (now - lastScroll < 1500) return;
                     lastScroll = now;
 
                     if (e.deltaY > 0) this.goToSlide(this.currentSlide + 1);
